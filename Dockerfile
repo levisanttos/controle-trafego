@@ -11,5 +11,5 @@ WORKDIR /app
 VOLUME /tmp
 COPY --from=build /app/target/*.jar app.jar
 ENV PROFILE=prd
-EXPOSE 8080
+EXPOSE 8081
 ENTRYPOINT java -Dspring.profiles.active=$PROFILE -jar app.jar
