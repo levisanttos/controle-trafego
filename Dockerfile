@@ -8,7 +8,6 @@ RUN mvn clean package -DskipTests
 # Etapa 2: runtime
 FROM eclipse-temurin:17-alpine
 VOLUME /tmp
-EXPOSE 8080
 COPY --from=build /app/target/*.jar app.jar
 ENV PROFILE=prd
 
