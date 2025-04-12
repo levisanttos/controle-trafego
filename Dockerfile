@@ -7,13 +7,9 @@ RUN mvn clean package -DskipTests
 
 # Etapa 2: runtime
 FROM eclipse-temurin:17-alpine
+WORKDIR /app
 VOLUME /tmp
 COPY --from=build /app/target/*.jar app.jar
 ENV PROFILE=prd
-
 EXPOSE 8080
-
-#ENTRYPOINT ["java", "-Dspring.profiles.active=${PROFILE}", "-jar", "app.jar"]
-
 ENTRYPOINT java -Dspring.profiles.active=$PROFILE -jar app.jar
-#ENTRYPOINT ["java", "-jar", "/app.jar"]
