@@ -1,4 +1,4 @@
-name: Continuous Integration FIAP Controle de Trafego
+name: Continuous Integration FIAP
 
 on:
   pull_request:
