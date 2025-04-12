@@ -26,7 +26,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.DOCKERHUB_USERNAME }}/simple-api-java:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.DOCKERHUB_USERNAME }}/controle-trafego:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
