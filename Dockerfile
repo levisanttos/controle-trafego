@@ -25,4 +25,5 @@ ENV PROFILE=prd
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-Dspring.profiles.active=${PROFILE}", "-jar", "app.jar"]
+ENTRYPOINT java -Dspring.profiles.active=$PROFILE -jar app.jar
+#ENTRYPOINT ["java", "-Dspring.profiles.active=${PROFILE}", "-jar", "app.jar"]
