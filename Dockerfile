@@ -13,6 +13,6 @@ FROM eclipse-temurin:17-alpine
 WORKDIR /app
 VOLUME /tmp
 COPY --from=build /app/target/*.jar app.jar
-ENV PROFILE=prd
+ENV PROFILE=dev
 EXPOSE 8080
 ENTRYPOINT java -Dspring.profiles.active=$PROFILE -jar app.jar
