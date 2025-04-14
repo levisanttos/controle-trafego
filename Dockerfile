@@ -1,23 +1,18 @@
 # Etapa 1: build com Maven
 FROM maven:3.8.5-eclipse-temurin-17 AS build
 
-RUN mkdir /opt/app
+WORKDIR /app
 
-COPY . /opt/app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
 
-WORKDIR /opt/app
-
-RUN mvn clean package
-
+# Etapa 2: runtime
 FROM eclipse-temurin:17-alpine
 
-RUN mkdir /opt/app
-
-COPY --from=build  /opt/app/target/app.jar /opt/app/app.jar
-
-WORKDIR /opt/app
-
+WORKDIR /app
+VOLUME /tmp
+COPY --from=build /app/target/*.jar app.jar
 ENV PROFILE=prd
-
 EXPOSE 8080
 ENTRYPOINT java -Dspring.profiles.active=$PROFILE -jar app.jar
